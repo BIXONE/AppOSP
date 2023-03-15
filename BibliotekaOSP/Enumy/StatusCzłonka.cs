@@ -1,6 +1,6 @@
 ﻿namespace BibliotekaOSP.Enumy;
 
-public enum StatusDruha
+public enum StatusCzłonka
 {
     MDP,
     Zwyczajny,

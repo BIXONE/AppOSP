@@ -2,13 +2,13 @@
 
 namespace BibliotekaOSP.Modele;
 
-public class Druh
+public class Członek
 {
     public int Id { get; set; }
     public string Imię { get; set; }
     public string Nazwisko { get; set; }
     public Płeć Płeć { get; set; }
-    public StatusDruha StatusDruha { get; set; }
+    public StatusCzłonka StatusCzłonka { get; set; }
     public Adres AdresZamieszkania { get; set; }
     public Adres? AdresKorespondencji { get; set; }
     public DateTime DataUrodzenia { get; set; }
