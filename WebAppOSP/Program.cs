@@ -1,6 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using NLog.Web;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Host.UseNLog();
+builder.Services.AddDbContext<OSPDbContext>
+    (options => options.UseSqlServer(builder.Configuration.GetConnectionString("OSPDbConnection")));
+builder.Services.AddScoped<ICz³onkowieService, Cz³onkowieService>();
+builder.Services.AddScoped<IFirmyService, FirmyService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
