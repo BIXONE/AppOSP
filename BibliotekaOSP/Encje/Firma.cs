@@ -10,6 +10,7 @@ public class Firma
     public ulong? NIP { get; set; }
     public ulong? KRS { get; set; }
     public int? NumerTelefonu { get; set; }
+    public bool czyJestAdresKorespondencji { get; set; }
     public int AdresSiedzibyId { get; set; }
     public int AdresKorespondencjiId { get; set; }
 

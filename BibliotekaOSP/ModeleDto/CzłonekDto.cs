@@ -15,6 +15,6 @@ public class CzłonekDto
     public int? NumerTelefonu { get; set; }
     public bool czyJestAdresKorespondencji { get; set; }
 
-    public AdresDto? AdresZamieszkania { get; set; }
+    public AdresDto? AdresSiedziby { get; set; }
     public AdresDto? AdresKorespondencji { get; set; }
 }

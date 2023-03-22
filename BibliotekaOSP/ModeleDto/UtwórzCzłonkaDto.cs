@@ -18,7 +18,7 @@ public class UtwórzCzłonkaDto
     public string? Numer { get; set; }
     public string? KodPocztowy { get; set; }
     public string? Miejscowość { get; set; }
-    public bool InnyAdresKorespondencji { get; set; }
+    public bool czyJestAdresKorespondencji { get; set; }
     public string? UlicaMiastoKorespondencji { get; set; }
     public string? NumerKorespondencji { get; set; }
     public string? KodPocztowyKorespondencji { get; set; }

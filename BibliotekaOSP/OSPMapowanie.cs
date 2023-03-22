@@ -11,39 +11,6 @@ public class OSPMapowanie
         this.dbContext = dbContext;
     }
 
-    public Adres OdUtwórzCzłonkaDtoDoAdresu(UtwórzCzłonkaDto utwórzCzłonkaDto)
-    {
-        Adres adres = new Adres();
-        adres = (Adres)DomyślneMapowanieWłaściwości(adres, utwórzCzłonkaDto);
-        return adres;
-    }
-
-    public Adres OdUtwórzCzłonkaDtoDoAdresuKorespondencji(UtwórzCzłonkaDto utwórzCzłonkaDto)
-    {
-        Adres adres = new()
-        {
-            UlicaMiasto = utwórzCzłonkaDto.UlicaMiastoKorespondencji,
-            Numer = utwórzCzłonkaDto.NumerKorespondencji,
-            KodPocztowy = utwórzCzłonkaDto.KodPocztowyKorespondencji,
-            Miejscowość = utwórzCzłonkaDto.MiejscowośćKorespondencji
-        };
-        return adres;
-    }
-
-    public CzłonekDto OdCzłonek(Członek członek)
-    {
-        CzłonekDto członekDto = new()
-        {
-            AdresZamieszkania = OdAdres((from adres in dbContext.Adresy
-                                         where adres.Id == członek.AdresZamieszkaniaId
-                                         select adres).FirstOrDefault())
-        };
-
-        członekDto = (CzłonekDto)DomyślneMapowanieWłaściwości(członekDto, członek);
-
-        return członekDto;
-    }
-
     /// <summary>
     /// Mapuje właściwości po nazwie jeżeli nie zostały wcześniej przypisane do niego żadne wartości
     /// </summary>
@@ -72,6 +39,40 @@ public class OSPMapowanie
         return obiektMapowany;
     }
 
+    #region Członkowie
+    public Adres OdUtwórzCzłonkaDtoDoAdresu(UtwórzCzłonkaDto utwórzCzłonkaDto)
+    {
+        Adres adres = new();
+        adres = (Adres)DomyślneMapowanieWłaściwości(adres, utwórzCzłonkaDto);
+        return adres;
+    }
+
+    public Adres OdUtwórzCzłonkaDtoDoAdresuKorespondencji(UtwórzCzłonkaDto utwórzCzłonkaDto)
+    {
+        Adres adres = new()
+        {
+            UlicaMiasto = utwórzCzłonkaDto.UlicaMiastoKorespondencji,
+            Numer = utwórzCzłonkaDto.NumerKorespondencji,
+            KodPocztowy = utwórzCzłonkaDto.KodPocztowyKorespondencji,
+            Miejscowość = utwórzCzłonkaDto.MiejscowośćKorespondencji
+        };
+        return adres;
+    }
+
+    public CzłonekDto OdCzłonek(Członek członek)
+    {
+        CzłonekDto członekDto = new()
+        {
+            AdresSiedziby = OdAdres((from adres in dbContext.Adresy
+                                         where adres.Id == członek.AdresZamieszkaniaId
+                                         select adres).FirstOrDefault())
+        };
+
+        członekDto = (CzłonekDto)DomyślneMapowanieWłaściwości(członekDto, członek);
+
+        return członekDto;
+    }
+
     public List<CzłonekDto> OdListyCzłonków(List<Członek> listaCzłonków)
     {
         List<CzłonekDto> listaCzłonkówDto = new();
@@ -84,6 +85,14 @@ public class OSPMapowanie
         return listaCzłonkówDto;
     }
 
+    public Członek OdUtwórzCzłonekDto(UtwórzCzłonkaDto utwórzCzłonekDto)
+    {
+        Członek członek = new();
+        członek = (Członek)DomyślneMapowanieWłaściwości(członek, utwórzCzłonekDto);
+        return członek;
+    }
+    #endregion
+
     public AdresDto OdAdres(Adres adres)
     {
         AdresDto adresDto = new();
@@ -93,13 +102,57 @@ public class OSPMapowanie
         return adresDto;
     }
 
-    public Członek OdUtwórzCzłonekDto(UtwórzCzłonkaDto utwórzCzłonekDto)
+    #region Firmy
+    public Adres OdUtwórzFirmęDtoDoAdresu(UtwórzFirmęDto utwórzFirmęDto)
     {
-        Członek członek = new()
-        {
-            czyJestAdresKorespondencji = utwórzCzłonekDto.InnyAdresKorespondencji
-        };
-        członek = (Członek)DomyślneMapowanieWłaściwości(członek, utwórzCzłonekDto);
-        return członek;
+        Adres adres = new();
+        adres = (Adres)DomyślneMapowanieWłaściwości(adres, utwórzFirmęDto);
+        return adres;
     }
+
+    public Adres OdUtwórzFirmęDtoDoAdresuKorespondencji(UtwórzFirmęDto utwórzFirmęDto)
+    {
+        Adres adres = new()
+        {
+            UlicaMiasto = utwórzFirmęDto.UlicaMiastoKorespondencji,
+            Numer = utwórzFirmęDto.NumerKorespondencji,
+            KodPocztowy = utwórzFirmęDto.KodPocztowyKorespondencji,
+            Miejscowość = utwórzFirmęDto.MiejscowośćKorespondencji
+        };
+        return adres;
+    }
+
+    public FirmaDto OdFirma(Firma firma)
+    {
+        FirmaDto firmaDto = new()
+        {
+            AdresSiedziby = OdAdres((from adres in dbContext.Adresy
+                                         where adres.Id == firma.AdresSiedzibyId
+                                         select adres).FirstOrDefault())
+        };
+
+        firmaDto = (FirmaDto)DomyślneMapowanieWłaściwości(firmaDto, firma);
+
+        return firmaDto;
+    }
+
+    public List<FirmaDto> OdListyFirm(List<Firma> listaFirm)
+    {
+        List<FirmaDto> listaFirmDto = new();
+
+        foreach (var firma in listaFirm)
+        {
+            listaFirmDto.Add(OdFirma(firma));
+        }
+
+        return listaFirmDto;
+    }
+
+    public Firma OdUtwórzFirmęDto(UtwórzFirmęDto utwórzFirmęDto)
+    {
+        Firma firma = new();
+        firma = (Firma)DomyślneMapowanieWłaściwości(firma, utwórzFirmęDto);
+        return firma;
+    }
+    #endregion
 }

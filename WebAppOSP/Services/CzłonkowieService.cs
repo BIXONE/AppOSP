@@ -16,7 +16,7 @@ public class CzłonkowieService : ICzłonkowieService
         Adres adresKorespondencji = new();
         Adres adresZamieszkania = mapowanie.OdUtwórzCzłonkaDtoDoAdresu(utwórzCzłonkaDto);
         dbContext.Adresy.Add(adresZamieszkania);
-        if (utwórzCzłonkaDto.InnyAdresKorespondencji == true)
+        if (utwórzCzłonkaDto.czyJestAdresKorespondencji == true)
         {
             adresKorespondencji = mapowanie.OdUtwórzCzłonkaDtoDoAdresuKorespondencji(utwórzCzłonkaDto);
             dbContext.Adresy.Add(adresKorespondencji);
@@ -25,7 +25,7 @@ public class CzłonkowieService : ICzłonkowieService
 
         Członek członek = mapowanie.OdUtwórzCzłonekDto(utwórzCzłonkaDto);
         członek.AdresZamieszkaniaId = adresZamieszkania.Id;
-        if (utwórzCzłonkaDto.InnyAdresKorespondencji == true)
+        if (utwórzCzłonkaDto.czyJestAdresKorespondencji == true)
             członek.AdresKorespondencjiId = adresKorespondencji.Id;
         else
             członek.AdresKorespondencjiId = adresZamieszkania.Id;
@@ -44,13 +44,13 @@ public class CzłonkowieService : ICzłonkowieService
         Adres? adresKorespondencji = new();
         bool czyByłAdresKorespondencji = członek.czyJestAdresKorespondencji;
 
-        if (utwórzCzłonkaDto.InnyAdresKorespondencji == true && czyByłAdresKorespondencji == false)
+        if (utwórzCzłonkaDto.czyJestAdresKorespondencji == true && czyByłAdresKorespondencji == false)
         {
             adresKorespondencji = mapowanie.OdUtwórzCzłonkaDtoDoAdresuKorespondencji(utwórzCzłonkaDto);
             dbContext.Adresy.Add(adresKorespondencji);
             dbContext.SaveChanges();
         }
-        else if (utwórzCzłonkaDto.InnyAdresKorespondencji == false && czyByłAdresKorespondencji == true)
+        else if (utwórzCzłonkaDto.czyJestAdresKorespondencji == false && czyByłAdresKorespondencji == true)
         {
             adresKorespondencji = (from adr in dbContext.Adresy
                                    where adr.Id == członek.AdresKorespondencjiId
@@ -61,7 +61,7 @@ public class CzłonkowieService : ICzłonkowieService
             dbContext.Remove(adresKorespondencji); 
             dbContext.SaveChanges();
         }
-        else if (utwórzCzłonkaDto.InnyAdresKorespondencji == true && czyByłAdresKorespondencji == true)
+        else if (utwórzCzłonkaDto.czyJestAdresKorespondencji == true && czyByłAdresKorespondencji == true)
         {
             adresKorespondencji = (from adr in dbContext.Adresy
                                    where adr.Id == członek.AdresKorespondencjiId
@@ -81,7 +81,7 @@ public class CzłonkowieService : ICzłonkowieService
         adresZamieszkania = mapowanie.OdUtwórzCzłonkaDtoDoAdresu(utwórzCzłonkaDto);
         członek = mapowanie.OdUtwórzCzłonekDto(utwórzCzłonkaDto);
         członek.AdresZamieszkaniaId = adresZamieszkania.Id;
-        if (utwórzCzłonkaDto.InnyAdresKorespondencji == true)
+        if (utwórzCzłonkaDto.czyJestAdresKorespondencji == true)
             członek.AdresKorespondencjiId = adresKorespondencji.Id;
         else
             członek.AdresKorespondencjiId = adresZamieszkania.Id;

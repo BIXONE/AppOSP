@@ -12,10 +12,10 @@ public class CzłonkowieControler : ControllerBase
         this.członkowieService = członkowieService;
     }
 
-    [HttpGet("{id}")]
-    public ActionResult PobierzCzłonka([FromRoute] int id)
+    [HttpGet("{członekId}")]
+    public ActionResult PobierzCzłonka([FromRoute] int członekId)
     {
-        var członek = członkowieService.PobierzCzłonka(id);
+        var członek = członkowieService.PobierzCzłonka(członekId);
         if (członek == null)
             return NotFound();
         return Ok(członek);
@@ -34,6 +34,13 @@ public class CzłonkowieControler : ControllerBase
     public ActionResult UtwórzCzłonka([FromBody] UtwórzCzłonkaDto utwórzCzłonkaDto)
     {
         członkowieService.UtwórzCzłonka(utwórzCzłonkaDto);
+        return Ok(utwórzCzłonkaDto);
+    }
+
+    [HttpPut("{członekId}")]
+    public ActionResult EdytujCzłonka([FromRoute] int członekId, [FromBody] UtwórzCzłonkaDto utwórzCzłonkaDto)
+    {
+        członkowieService.EdytujCzłonka(członekId, utwórzCzłonkaDto);
         return Ok(utwórzCzłonkaDto);
     }
 }
