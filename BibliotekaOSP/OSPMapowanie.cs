@@ -155,4 +155,11 @@ public class OSPMapowanie
         return firma;
     }
     #endregion
+
+    public Portfel OdUtwórzPortfelDto(UtwórzPortfelDto utwórzPortfel)
+    {
+        Portfel portfel = new();
+        portfel = (Portfel)DomyślneMapowanieWłaściwości(portfel, utwórzPortfel);
+        return portfel;
+    }
 }

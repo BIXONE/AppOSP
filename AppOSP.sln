@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppOSP", "WebAppOSP\WebA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotekaOSP", "BibliotekaOSP\BibliotekaOSP.csproj", "{9F645CB4-5469-46B0-A216-88235EB5B399}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppOSP", "AppOSP\AppOSP.csproj", "{C6EC20C6-41FF-4E50-BE46-88EA3C07AA98}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9F645CB4-5469-46B0-A216-88235EB5B399} = {9F645CB4-5469-46B0-A216-88235EB5B399}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +26,12 @@ Global
 		{9F645CB4-5469-46B0-A216-88235EB5B399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F645CB4-5469-46B0-A216-88235EB5B399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F645CB4-5469-46B0-A216-88235EB5B399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6EC20C6-41FF-4E50-BE46-88EA3C07AA98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6EC20C6-41FF-4E50-BE46-88EA3C07AA98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6EC20C6-41FF-4E50-BE46-88EA3C07AA98}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C6EC20C6-41FF-4E50-BE46-88EA3C07AA98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6EC20C6-41FF-4E50-BE46-88EA3C07AA98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6EC20C6-41FF-4E50-BE46-88EA3C07AA98}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

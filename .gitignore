@@ -7,3 +7,5 @@ BibliotekaOSP/Migrations/
 AppOSP.sln
 WebAppOSP/appsettings.json
 /BibliotekaOSP/SQLQuery1.sql
+AppOSP/bin
+AppOSP/obj

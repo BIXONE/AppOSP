@@ -3,11 +3,11 @@
 namespace WebAppOSP.Controllers;
 
 [Route("członkowie")]
-public class CzłonkowieControler : ControllerBase
+public class CzłonkowieController : ControllerBase
 {
     private readonly ICzłonkowieService członkowieService;
 
-    public CzłonkowieControler(ICzłonkowieService członkowieService)
+    public CzłonkowieController(ICzłonkowieService członkowieService)
     {
         this.członkowieService = członkowieService;
     }

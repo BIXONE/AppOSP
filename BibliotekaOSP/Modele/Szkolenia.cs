@@ -1,6 +1,4 @@
-﻿using BibliotekaOSP.Enumy;
-
-namespace BibliotekaOSP.Modele;
+﻿namespace BibliotekaOSP.Modele;
 
 public class SzkolenieUkończone
 {

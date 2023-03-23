@@ -1,9 +1,11 @@
-﻿namespace BibliotekaOSP.Modele;
+﻿namespace BibliotekaOSP.Encje;
 
 public class Portfel
 {
     public int Id { get; set; }
     public string Nazwa { get; set; }
     public string Opis { get; set; }
-    public Kwota StanKonta { get; }
+    public bool Blokada { get; set; }
+
+    public virtual List<Przelew> Przelewy { get; set; }
 }

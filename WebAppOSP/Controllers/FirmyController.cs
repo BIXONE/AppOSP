@@ -3,11 +3,11 @@
 namespace WebAppOSP.Controllers;
 
 [Route("firmy")]
-public class FirmyControler : ControllerBase
+public class FirmyController : ControllerBase
 {
     private readonly IFirmyService firmyService;
 
-    public FirmyControler(IFirmyService firmyService)
+    public FirmyController(IFirmyService firmyService)
     {
         this.firmyService = firmyService;
     }

@@ -9,6 +9,8 @@ builder.Services.AddDbContext<OSPDbContext>
     (options => options.UseSqlServer(builder.Configuration.GetConnectionString("OSPDbConnection")));
 builder.Services.AddScoped<ICz³onkowieService, Cz³onkowieService>();
 builder.Services.AddScoped<IFirmyService, FirmyService>();
+builder.Services.AddScoped<IPortfelService, PortfelService>();
+builder.Services.AddScoped<IPrzelewService, PrzelewService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
