@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace BibliotekaOSP.Encje;
 
@@ -16,14 +17,12 @@ public class OSPDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //modelBuilder.Entity<Przelew>()
-        //    .Property(p => p.Kwota.Wartość)
-        //    .HasColumnName("Wartosc")
-        //    .HasConversion<decimal>();
-
-        //modelBuilder.Entity<Przelew>()
-        //    .Property(p => p.Kwota.Symbol)
-        //    .HasColumnName("Waluta")
-        //    .HasConversion<string>();
+        modelBuilder.Entity<Przelew>(przel =>
+        {
+            przel.Property(p => p.Kwota)
+            .HasConversion(
+                v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
+                v => JsonSerializer.Deserialize<Kwota>(v, (JsonSerializerOptions)null));
+            });
     }
 }

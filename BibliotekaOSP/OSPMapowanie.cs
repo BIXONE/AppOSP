@@ -64,8 +64,8 @@ public class OSPMapowanie
         CzłonekDto członekDto = new()
         {
             AdresSiedziby = OdAdres((from adres in dbContext.Adresy
-                                         where adres.Id == członek.AdresZamieszkaniaId
-                                         select adres).FirstOrDefault())
+                                     where adres.Id == członek.AdresZamieszkaniaId
+                                     select adres).FirstOrDefault())
         };
 
         członekDto = (CzłonekDto)DomyślneMapowanieWłaściwości(członekDto, członek);
@@ -127,8 +127,8 @@ public class OSPMapowanie
         FirmaDto firmaDto = new()
         {
             AdresSiedziby = OdAdres((from adres in dbContext.Adresy
-                                         where adres.Id == firma.AdresSiedzibyId
-                                         select adres).FirstOrDefault())
+                                     where adres.Id == firma.AdresSiedzibyId
+                                     select adres).FirstOrDefault())
         };
 
         firmaDto = (FirmaDto)DomyślneMapowanieWłaściwości(firmaDto, firma);
@@ -156,10 +156,38 @@ public class OSPMapowanie
     }
     #endregion
 
-    public Portfel OdUtwórzPortfelDto(UtwórzPortfelDto utwórzPortfel)
+    public Portfel OdUtwórzPortfelDto(UtwórzPortfelDto utwórzPortfelDto)
     {
         Portfel portfel = new();
-        portfel = (Portfel)DomyślneMapowanieWłaściwości(portfel, utwórzPortfel);
+        portfel = (Portfel)DomyślneMapowanieWłaściwości(portfel, utwórzPortfelDto);
         return portfel;
     }
+
+    #region Przelewy
+    public Przelew OdUtwórzPrzelewDto(UtwórzPrzelewDto utwórzPrzelewDto)
+    {
+        Przelew przelew = new();
+        przelew = (Przelew)DomyślneMapowanieWłaściwości(przelew, utwórzPrzelewDto);
+        return przelew;
+    }
+
+    public PrzelewDto? OdPrzelew(Przelew przelew)
+    {
+        PrzelewDto przelewDto = new();
+        przelewDto = (PrzelewDto)DomyślneMapowanieWłaściwości(przelewDto, przelew);
+        return przelewDto;
+    }
+
+    public List<PrzelewDto> OdListyPrzelewów(List<Przelew> przelewy)
+    {
+        List<PrzelewDto> listaPrzelewówDto = new();
+
+        foreach (var przelew in przelewy)
+        {
+            listaPrzelewówDto.Add(OdPrzelew(przelew));
+        }
+
+        return listaPrzelewówDto;
+    }
+    #endregion
 }

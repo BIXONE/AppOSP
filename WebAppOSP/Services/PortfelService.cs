@@ -13,7 +13,15 @@ public class PortfelService : IPortfelService
 
     public bool? EdytujPortfel(int portfelId, UtwórzPortfelDto utwórzPortfel)
     {
-        throw new NotImplementedException();
+        Portfel? portfel = (from port in dbContext.Portfele
+                            where portfelId == port.Id && port.Blokada == false
+                            select port).FirstOrDefault();
+        if (portfel == null)
+            return null;
+
+        portfel = mapowanie.OdUtwórzPortfelDto(utwórzPortfel);
+        dbContext.SaveChanges();
+        return true;
     }
 
     public bool? UsuńPortfel(int portfelId)
@@ -31,7 +39,9 @@ public class PortfelService : IPortfelService
 
     public void UtwórzPortfel(UtwórzPortfelDto utwórzPortfel)
     {
-        throw new NotImplementedException();
+        Portfel portfel = mapowanie.OdUtwórzPortfelDto(utwórzPortfel);
+        dbContext.Portfele.Add(portfel);
+        dbContext.SaveChanges();
     }
 
     public Kwota WartośćPortfela(int portfelId)

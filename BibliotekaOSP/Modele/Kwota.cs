@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Text.Json.Serialization;
 
 namespace BibliotekaOSP.Modele;
 
@@ -13,6 +13,7 @@ public class Kwota
         Symbol = kwota.Symbol;
     }
 
+    [JsonConstructor]
     public Kwota(decimal kwota, Waluta waluta = Waluta.PLN)
     {
         Wartość = NarzędziaMatematyczne.ZaokrąglijCena(kwota);

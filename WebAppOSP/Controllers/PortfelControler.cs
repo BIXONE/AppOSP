@@ -10,4 +10,26 @@ public class PortfelController : ControllerBase
     {
         return Ok(WartośćPortfela(portfelId).ToString());
     }
+
+    [HttpPost]
+    public ActionResult UtwórzPortfel([FromBody] UtwórzCzłonkaDto utwórzCzłonkaDto)
+    {
+        UtwórzPortfel(utwórzCzłonkaDto);
+        return Ok();
+    }
+
+    [HttpPut("{portfelId}")]
+    public ActionResult EdytujPortfel([FromRoute] int portfelId, [FromBody] UtwórzCzłonkaDto utwórzCzłonkaDto)
+    {
+        EdytujPortfel(portfelId, utwórzCzłonkaDto);
+        return Ok();
+    }
+
+    [HttpDelete("{portfelId}")]
+    public ActionResult UsuńPortfel([FromRoute] int portfelId)
+    {
+        UsuńPortfel(portfelId);
+        return Ok();
+    }
+
 }
